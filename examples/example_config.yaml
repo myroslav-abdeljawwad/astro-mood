@@ -1,0 +1,74 @@
+# Example configuration for astro-mood
+#
+# This file demonstrates how to set up the application.
+# The values below are placeholders and should be replaced
+# with real credentials or paths when deploying.
+
+# General application metadata
+app:
+  name: "astro-mood"
+  version: "1.0.0"          # Keep in sync with src/astro_mood/__init__.py
+  author: "Myroslav Mokhammad Abdeljawwad"
+
+# Logging configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    console:
+      type: "StreamHandler"
+      stream: "ext://sys.stdout"
+    file:
+      type: "FileHandler"
+      filename: "./logs/astro_mood.log"
+      mode: "a"
+
+# Moon phase data source
+moon:
+  # API endpoint for lunar phase data (public or paid)
+  api_url: "https://api.lunar-phase.com/v1/current"
+  # Optional API key if required by the provider
+  api_key: "YOUR_API_KEY_HERE"
+  # Frequency to refresh moon data in minutes
+  refresh_interval_min: 60
+
+# Personal rhythm analytics
+rhythm:
+  # Path to the local CSV file containing user activity logs
+  data_path: "./data/user_activity.csv"
+  # Columns expected in the CSV file
+  columns:
+    - timestamp
+    - activity_type
+    - duration_minutes
+  # Aggregation window for analysis (days)
+  aggregation_window_days: 30
+
+# Notification settings (optional)
+notifications:
+  enable_email: false
+  email:
+    smtp_server: "smtp.example.com"
+    smtp_port: 587
+    use_tls: true
+    username: "user@example.com"
+    password: "password123"
+    from_address: "astro-mood@example.com"
+    to_addresses:
+      - "recipient1@example.com"
+      - "recipient2@example.com"
+
+# API rate limiting configuration
+rate_limit:
+  # Maximum number of requests per minute to external APIs
+  max_requests_per_minute: 30
+
+# Optional integration with a local database (SQLite)
+database:
+  enabled: false
+  sqlite_path: "./db/astro_mood.db"
+
+# Advanced features (debugging, profiling)
+advanced:
+  debug_mode: false
+  enable_profiling: false
